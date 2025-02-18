@@ -13,17 +13,30 @@ public class AircraftFire : MonoBehaviour
 {
     public Transform fireTransform;
     
-    private float mFireOnceDuration;//子弹的持续时间
-    private float mFireOnceBullets;//攻击一次发射的子弹数
+    private float mFireOnceDuration=ConstantGameData.InitFireCD;//子弹的持续时间
+    private float mFireOnceBullets=1;//攻击一次发射的子弹数
     private float mFireOnceCD;//攻击一次所用的CD
-    private float mFirePower;//子弹的攻击力
+    private float mFirePower=ConstantGameData.InitFirePower;//子弹的攻击力
     private float mFireSpeed;//子弹的飞行速度
     
     public bool IsFiring { get; private set; }
 
+    private void Awake()
+    {
+        if (fireTransform==null)
+            fireTransform = transform.Find("fireTransform");
+        if (fireTransform == null)
+            Debug.LogError("fireTransform为空，请创建这个物体");
+    }
+
     private void FireOnce()
     {
-        Debug.Log("FireOnce");
+        for (int i = 0; i < mFireOnceBullets; i++)
+        {
+            Bullet bullet=  Bullet.Create();
+            bullet.Init(fireTransform.position,1,1,ConstantGameData.InitFireSpeed); 
+        }
+          
     }
     public void Fire()
     {
@@ -38,6 +51,7 @@ public class AircraftFire : MonoBehaviour
     {
         if (IsFiring)
         {
+            mFireOnceCD = this.UpdateCD(mFireOnceCD);
             if (mFireOnceCD <= 0)
             {
                 FireOnce();

@@ -34,8 +34,8 @@ public class EntityBase : MonoBehaviour
 
 public class EntityBase<T>:  EntityBase where T : EntityBase<T>
 {
-    // public static T Create()
-    // {
-    //     return EntityManager.Create<T>();
-    // }
+    public static T Create()
+    {
+        return EntityManager.Create<T>();
+    }
 }

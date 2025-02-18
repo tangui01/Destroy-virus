@@ -10,14 +10,16 @@ using UnityEngine;
 *****************************************************/
 public static class ConstantGameData
 {
+    //地图范围
     public static float MoveMaxX = 1075;
     public static float MoveMaxY = 818;
     public static float MoveMinX = 50;
     public static float MoveMinY = 50;
     
-    
-    public static float InitFireSpeed = 1f;//初始发射子弹速度
+    //子弹
+    public static float InitFireSpeed = 500;//初始发射子弹速度
     public static float InitFirePower = 1f;//初始子弹伤害
-    
-    
+    public static float InitFireCD = 0.5f;//初始子弹CD
+    //资源配置路径
+    public static string GameConfPath = "Data/GameConf";
 }

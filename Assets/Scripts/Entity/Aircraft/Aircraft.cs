@@ -21,6 +21,11 @@ public class Aircraft : EntityBase<Aircraft>
          Firement=gameObject.GetOrAddGetCompent<AircraftFire>();
      }
 
+     private void Start()
+     {
+         Firement.Fire();
+     }
+
      private void Update()
      {
         MoveMent.Move(InputHandle.GetMoveDirection());
