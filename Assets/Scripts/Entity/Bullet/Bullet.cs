@@ -26,21 +26,25 @@ public class Bullet : EntityBase<Bullet>
         rectTransform.anchoredPosition = position;
         mSpeed = speed;
         mDamage = damage;
+        rectTransform.DOAnchorPos3DX(position.x + offsetX, bornCD);
         mSpeedMul = 0 ;
     }
 
     private void Update()
     {
-        // Vector2 uiPos = UIUtil.GetUIPos(rectTransform);
-        // if (uiPos.y > UIUtil.height + BULLET_HEIGH
-        //     || uiPos.x > UIUtil.width + BULLET_WIDTH || uiPos.x < -BULLET_WIDTH)
-        // {
-        //     Recycle();
-        //     isAlive = false;
-        // }
-        //
-        // mSpeedMul = 1;
-        rectTransform.anchoredPosition+=Time.deltaTime*mSpeed*Vector2.up ;
-        // rectTransform.anchoredPosition += Vector2.up * mSpeed * mSpeedMul * GlobalData.slowDownFactor * Time.deltaTime;
+        Vector2 uiPos = UIUtil.GetUIPos(rectTransform);
+        if (uiPos.y > UIUtil.height || uiPos.x > UIUtil.width)
+        {
+            Recycle(this);
+            isAlive = false;
+        }
+
+        mSpeedMul = 1;
+        rectTransform.anchoredPosition += mSpeed * mSpeedMul  * Time.deltaTime*Vector2.up ;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        
     }
 }

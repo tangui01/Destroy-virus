@@ -53,7 +53,7 @@ public class EntityManager : Singleton<EntityManager>
             return null;
         }
 
-        var entity = Instantiate(_pooledPrefab.prefab, _pooledPrefab.root).GetComponent<EntityBase>();
+        var entity = PoolManager.Instance.GetObj(t.ToString(),_pooledPrefab.prefab,Vector3.zero,Quaternion.identity, _pooledPrefab.root).GetComponent<EntityBase>();
         entity.uid = ++sUidCounter;
         if (_pooledPrefab.root != null
             && _pooledPrefab.root != entity.transform.parent)

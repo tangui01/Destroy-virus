@@ -11,20 +11,20 @@ using UnityEngine;
 *****************************************************/
 public class AircraftFire : MonoBehaviour
 {
-    public Transform fireTransform;
+    public RectTransform fireTransform;
     
     private float mFireOnceDuration=ConstantGameData.InitFireCD;//子弹的持续时间
     private float mFireOnceBullets=1;//攻击一次发射的子弹数
     private float mFireOnceCD;//攻击一次所用的CD
     private float mFirePower=ConstantGameData.InitFirePower;//子弹的攻击力
-    private float mFireSpeed;//子弹的飞行速度
+    private float mFireSpeed=ConstantGameData.InitFireSpeed;//子弹的飞行速度
     
     public bool IsFiring { get; private set; }
 
     private void Awake()
     {
         if (fireTransform==null)
-            fireTransform = transform.Find("fireTransform");
+            fireTransform = transform.Find("fireTransform").GetComponent<RectTransform>();
         if (fireTransform == null)
             Debug.LogError("fireTransform为空，请创建这个物体");
     }
@@ -33,8 +33,8 @@ public class AircraftFire : MonoBehaviour
     {
         for (int i = 0; i < mFireOnceBullets; i++)
         {
-            Bullet bullet=  Bullet.Create();
-            bullet.Init(fireTransform.position,1,1,ConstantGameData.InitFireSpeed); 
+            Bullet bullet=Bullet.Create();
+            bullet.Init(UIUtil.GetUIPos(fireTransform),1,1,mFireSpeed); 
         }
           
     }

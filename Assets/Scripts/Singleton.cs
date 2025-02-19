@@ -31,7 +31,7 @@ public class Singleton<T>: MonoBehaviour where T : Singleton<T>
                     {
                         Debug.LogError("Class " + typeof(T).Name + " exists multiple times in violation of singleton pattern. Destroying all copies");
                         //销毁除第一个以外的单例
-                        for (int i = 0; i < managers.Length; i++)
+                        for (int i = 1; i < managers.Length; i++)
                         {
                             Destroy(managers[i]);
                         }

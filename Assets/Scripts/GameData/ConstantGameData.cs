@@ -11,10 +11,10 @@ using UnityEngine;
 public static class ConstantGameData
 {
     //地图范围
-    public static float MoveMaxX = 1075;
-    public static float MoveMaxY = 818;
-    public static float MoveMinX = 50;
-    public static float MoveMinY = 50;
+    public static float MoveMaxX = 1024;
+    public static float MoveMaxY = 768;
+    public static float MoveMinX = 0;
+    public static float MoveMinY = 0;
     
     //子弹
     public static float InitFireSpeed = 500;//初始发射子弹速度

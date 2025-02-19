@@ -24,11 +24,9 @@ public class EntityBase : MonoBehaviour
         }
     }
    //回收物体
-    public void Recycle()
+    public void Recycle<T>(T t) where T : EntityBase
     {
-        //TODO
-        //暂时先销毁物体:等到转到主项目才用对象池
-        Destroy(gameObject);
+       PoolManager.Instance.PushObj(typeof(T).ToString(),gameObject);
     }
 }
 
